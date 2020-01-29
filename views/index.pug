@@ -1,0 +1,174 @@
+extends layout
+
+block content
+
+  //- Portafolio Seccion
+
+  section(class="d-flex vh-100 bg-info justify-content-center align-items-center masthead" id="portafolio")
+    div(class="justify-content-center")
+        div(class="row justify-content-center")
+            div(class="col-md-10 col-lg-10 col-10 img-circle")
+              img(src="/images/perfil.jpg", class="rounded-circle", alt="Alt")
+        div(class="container-fluid justify-content-center py-4")
+          div(class="row justify-content-center")
+            h1(class="text-white text-uppercase") Portafolio
+          div(class="row justify-content-center")
+            h5(class="font-weight-light text-white") Ruben David Parga García
+
+
+  section(id="portafolio", class="container py-5 my-5") 
+    center
+      i(class="fa fa-star")
+      i(class="fa fa-star")
+      i(class="fa fa-star")
+      i(class="fa fa-star")
+      i(class="fa fa-star")
+      i(class="fa fa-star")
+      i(class="fa fa-star")
+      i(class="fa fa-star")
+      h1(class="text-secondary text-center") Portafolio
+      i(class="fa fa-star")
+      i(class="fa fa-star")
+      i(class="fa fa-star")
+    div(class="row justify-content-center")
+
+      //- Foreach portafolio
+      div(class="col-sm-12 col-md-6 col-lg-4 col-xl-3 col-12")
+        div(class="row px-3")
+          div(class="portafolio justify-content-center d-flex align-items-center rounded"
+            data-toggle="modal", 
+            data-target="#exampleModal",
+            data-title="Portafolio uno"
+            data-img="https://blackrockdigital.github.io/startbootstrap-freelancer/img/portfolio/cabin.png"
+            data-description="Lorem Lorem"
+          )
+            img(src="https://blackrockdigital.github.io/startbootstrap-freelancer/img/portfolio/cabin.png", 
+            alt="Portafolio 1", 
+            class="img-fluid rounded shadow-lg"
+          )
+
+          //__________________________________________________
+      div(class="col-sm-12 col-md-6 col-lg-4 col-xl-3 col-12")
+        div(class="row px-3")
+          div(class="portafolio justify-content-center d-flex align-items-center rounded"
+            data-toggle="modal", 
+            data-target="#exampleModal",
+            data-title="Portafolio uno"
+            data-img="https://blackrockdigital.github.io/startbootstrap-freelancer/img/portfolio/game.png"
+            data-description="Lorem Lorem"
+          )
+            img(src="https://blackrockdigital.github.io/startbootstrap-freelancer/img/portfolio/game.png", 
+            alt="Portafolio 1", 
+            class="img-fluid rounded shadow-lg"
+          )
+          //__________________________________________________
+      div(class="col-sm-12 col-md-6 col-lg-4 col-xl-3 col-12")
+        div(class="row px-3")
+          div(class="portafolio justify-content-center d-flex align-items-center rounded"
+            data-toggle="modal", 
+            data-target="#exampleModal",
+            data-title="Portafolio uno"
+            data-img="https://blackrockdigital.github.io/startbootstrap-freelancer/img/portfolio/cake.png"
+            data-description="Lorem Lorem"
+          )
+            img(src="https://blackrockdigital.github.io/startbootstrap-freelancer/img/portfolio/cake.png", 
+            alt="Portafolio 1", 
+            class="img-fluid rounded shadow-lg"
+          )
+          //__________________________________________________
+      div(class="col-sm-12 col-md-6 col-lg-4 col-xl-3 col-12")
+        div(class="row px-3")
+          div(class="portafolio justify-content-center d-flex align-items-center rounded"
+            data-toggle="modal", 
+            data-target="#exampleModal",
+            data-title="Portafolio uno"
+            data-img="https://blackrockdigital.github.io/startbootstrap-freelancer/img/portfolio/circus.png"
+            data-description="Lorem Lorem"
+          )
+            img(src="https://blackrockdigital.github.io/startbootstrap-freelancer/img/portfolio/circus.png", 
+            alt="Portafolio 1", 
+            class="img-fluid rounded shadow-lg"
+          )
+          //__________________________________________________
+      div(class="col-sm-12 col-md-6 col-lg-4 col-xl-3 col-12")
+        div(class="row px-3")
+          div(class="portafolio justify-content-center d-flex align-items-center rounded"
+            data-toggle="modal", 
+            data-target="#exampleModal",
+            data-title="Portafolio uno"
+            data-img="https://blackrockdigital.github.io/startbootstrap-freelancer/img/portfolio/safe.png"
+            data-description="Lorem Lorem"
+          )
+            img(src="https://blackrockdigital.github.io/startbootstrap-freelancer/img/portfolio/safe.png", 
+            alt="Portafolio 1", 
+            class="img-fluid rounded shadow-lg"
+          )
+          //__________________________________________________
+      div(class="col-sm-12 col-md-6 col-lg-4 col-xl-3 col-12")
+        div(class="row px-3")
+          div(class="portafolio justify-content-center d-flex align-items-center rounded"
+            data-toggle="modal", 
+            data-target="#exampleModal",
+            data-title="Portafolio uno"
+            data-img="https://blackrockdigital.github.io/startbootstrap-freelancer/img/portfolio/submarine.png"
+            data-description="Lorem Lorem"
+          )
+            img(src="https://blackrockdigital.github.io/startbootstrap-freelancer/img/portfolio/submarine.png", 
+            alt="Portafolio 1", 
+            class="img-fluid rounded shadow-lg"
+          )
+  
+  section(id="about" class="d-flex vh-100 bg-primary justify-content-center align-items-center")
+    div(class="container")
+      h1(class="text-white text-center") About
+
+      div(class="row")
+        div(class="col-12 col-md-6 text-white") Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias quas aspernatur omnis, dolor quia a voluptate. Molestias asperiores, eligendi, saepe, nostrum molestiae mollitia nisi dolorum soluta consequatur voluptate ullam accusamus!
+        div(class="col-12 col-md-6 text-white") Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere molestias dolore optio quas cumque quod quidem quasi! Laboriosam iusto atque dignissimos dolorum illo voluptate libero ipsam eum corrupti optio? Eius.
+     
+          
+
+  section(id="contact" class="d-flex vh-100 justify-content-center")
+    div(class="container")
+      h1(class="text-secondary text-center pt-5") CONTACT ME
+
+
+
+      form(action="/send", method="POST", class="row justify-content-center py-4", id="contact-form")
+        div(class="col-12 col-md-8")
+          div(class="form-group")
+              input(name="name" id="name" placeholder="Name" class="form-control")
+          div(class="form-group")
+            input(name="email" id="email" placeholder="Email" type="mail" class="form-control")
+          div(class="form-group")
+            input(name="phone" id="phone" placeholder="Phone" type="phone" class="form-control")
+          div(class="form-group")
+            textarea(name="message", cols="30", rows="5" placeholder="Message" class="form-control")
+          button(class="btn btn-primary" type="submit" onclick=`document.getElementById('contact-form').submit(); return false;`) Send
+
+  //- Same modal for all projects
+  div(class="modal fade portfolio-modal" 
+    id="exampleModal" 
+    tabindex="-1" 
+    role="dialog" 
+    aria-labelledby="exampleModalLabel" 
+    aria-hidden="true"
+  )
+    div(class="modal-dialog" role="document")
+      div(class="modal-content text-white bg-info")
+        button(type="button", class="close", data-dismiss="modal", aria-label="Close")
+          span(aria-hidden="true") &times;
+        div(class="modal-body py-5 mt-5 px-4 text-center")
+          div(class="container")
+            div(class="row justify-content-center")
+              div(class="col-12")
+                img(src="/images/no_img.png", 
+            class="img-fluid rounded shadow-lg"
+          )
+                p(class="description py-5")
+                button(type="button" class="btn btn-primary rounded" data-dismiss="modal") Close Windows
+
+
+
+block scripts 
+  script(src="/javascripts/portafolio.js")
