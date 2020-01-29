@@ -6,3 +6,14 @@ body {
 a {
   color: #00B7FF;
 }
+
+img.flower_arrangements{
+  position: absolute;
+  height: 400px;
+  width: 250px;
+}
+
+img{
+  width:50px;
+  height:50px;
+  } 
