@@ -1,522 +1,522 @@
-/ *!
+/*!
 * sweetalert2 v9.7.1
-* Publicado bajo la licencia MIT.
-* /
-(función (global, fábrica) {
-	typeof export === 'object' && typeof module! == 'undefined'? module.exports = factory ():
-	typeof define === 'función' && define.amd? definir (fábrica):
-	(global.Sweetalert2 = fábrica ());
-} (this, (function () {'use estricto';
+* Released under the MIT License.
+*/
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+	typeof define === 'function' && define.amd ? define(factory) :
+	(global.Sweetalert2 = factory());
+}(this, (function () { 'use strict';
 
-función _typeof (obj) {
+function _typeof(obj) {
   if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
     _typeof = function (obj) {
-      tipo de retorno obj;
+      return typeof obj;
     };
-  } más {
+  } else {
     _typeof = function (obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj! == Symbol.prototype? "símbolo": typeof obj;
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
     };
   }
 
-  return _typeof (obj);
+  return _typeof(obj);
 }
 
-función _classCallCheck (instancia, Constructor) {
-  if (! (instance instanceof Constructor)) {
-    lanzar nuevo TypeError ("No se puede llamar a una clase como una función");
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
   }
 }
 
-función _defineProperties (target, props) {
-  for (var i = 0; i <props.length; i ++) {
-    descriptor var = accesorios [i];
-    descriptor.enumerable = descriptor.enumerable || falso;
-    descriptor.configurable = verdadero;
-    if ("valor" en el descriptor) descriptor.writable = true;
-    Object.defineProperty (target, descriptor.key, descriptor);
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
   }
 }
 
-function _createClass (Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties (Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties (Constructor, staticProps);
-  Constructor de retorno;
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
 }
 
-función _extends () {
-  _extends = Object.assign || función (objetivo) {
-    para (var i = 1; i <argumentos.length; i ++) {
-      var fuente = argumentos [i];
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
 
-      para (clave var en fuente) {
-        if (Object.prototype.hasOwnProperty.call (fuente, clave)) {
-          objetivo [clave] = fuente [clave];
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
         }
       }
     }
 
-    objetivo de retorno;
+    return target;
   };
 
-  return _extends.apply (esto, argumentos);
+  return _extends.apply(this, arguments);
 }
 
-función _inherits (subclase, superclase) {
-  if (typeof superClass! == "function" && superClass! == null) {
-    lanzar nuevo TypeError ("La súper expresión debe ser nula o una función");
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
   }
 
-  subClass.prototype = Object.create (superClass && superClass.prototype, {
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
     constructor: {
-      valor: subclase,
-      grabable: verdadero,
-      configurable: verdadero
+      value: subClass,
+      writable: true,
+      configurable: true
     }
   });
-  if (superclase) _setPrototypeOf (subclase, superclase);
+  if (superClass) _setPrototypeOf(subClass, superClass);
 }
 
-función _getPrototypeOf (o) {
-  _getPrototypeOf = Object.setPrototypeOf? Object.getPrototypeOf: function _getPrototypeOf (o) {
-    return o .__ proto__ || Object.getPrototypeOf (o);
+function _getPrototypeOf(o) {
+  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
   };
-  return _getPrototypeOf (o);
+  return _getPrototypeOf(o);
 }
 
-función _setPrototypeOf (o, p) {
-  _setPrototypeOf = Object.setPrototypeOf || función _setPrototypeOf (o, p) {
-    o .__ proto__ = p;
-    volver o;
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
   };
 
-  return _setPrototypeOf (o, p);
+  return _setPrototypeOf(o, p);
 }
 
-La función isNativeReflectConstruct () {
-  if (typeof Reflect === "undefined" ||! Reflect.construct) devuelve falso;
-  if (Reflect.construct.sham) devuelve falso;
-  if (typeof Proxy === "function") devuelve verdadero;
+function isNativeReflectConstruct() {
+  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+  if (Reflect.construct.sham) return false;
+  if (typeof Proxy === "function") return true;
 
-  tratar {
-    Date.prototype.toString.call (Reflect.construct (Date, [], function () {}));
-    volver verdadero;
-  } captura (e) {
-    falso retorno;
+  try {
+    Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
+    return true;
+  } catch (e) {
+    return false;
   }
 }
 
-function _construct (Parent, args, Class) {
-  if (isNativeReflectConstruct ()) {
+function _construct(Parent, args, Class) {
+  if (isNativeReflectConstruct()) {
     _construct = Reflect.construct;
-  } más {
-    _construct = function _construct (Parent, args, Class) {
-      var a = [nulo];
-      a.push.apply (a, args);
-      var Constructor = Function.bind.apply (Parent, a);
-      instancia var = new Constructor ();
-      if (Class) _setPrototypeOf (instancia, Class.prototype);
-      instancia de retorno;
+  } else {
+    _construct = function _construct(Parent, args, Class) {
+      var a = [null];
+      a.push.apply(a, args);
+      var Constructor = Function.bind.apply(Parent, a);
+      var instance = new Constructor();
+      if (Class) _setPrototypeOf(instance, Class.prototype);
+      return instance;
     };
   }
 
-  return _construct.apply (nulo, argumentos);
+  return _construct.apply(null, arguments);
 }
 
-función _assertThisInitialized (self) {
+function _assertThisInitialized(self) {
   if (self === void 0) {
-    lanzar nuevo ReferenceError ("esto no se ha inicializado, no se ha llamado a super ()");
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
   }
 
-  volver a sí mismo;
+  return self;
 }
 
-function _possibleConstructorReturn (self, call) {
+function _possibleConstructorReturn(self, call) {
   if (call && (typeof call === "object" || typeof call === "function")) {
-    Devolver la llamada;
+    return call;
   }
 
-  return _assertThisInitialized (self);
+  return _assertThisInitialized(self);
 }
 
-función _superPropBase (objeto, propiedad) {
-  while (! Object.prototype.hasOwnProperty.call (objeto, propiedad)) {
-    objeto = _getPrototypeOf (objeto);
-    if (objeto === nulo) descanso;
+function _superPropBase(object, property) {
+  while (!Object.prototype.hasOwnProperty.call(object, property)) {
+    object = _getPrototypeOf(object);
+    if (object === null) break;
   }
 
-  devolver objeto;
+  return object;
 }
 
-función _get (objetivo, propiedad, receptor) {
-  if (typeof Reflect! == "undefined" && Reflect.get) {
+function _get(target, property, receiver) {
+  if (typeof Reflect !== "undefined" && Reflect.get) {
     _get = Reflect.get;
-  } más {
-    _get = function _get (target, property, receptor) {
-      var base = _superPropBase (objetivo, propiedad);
+  } else {
+    _get = function _get(target, property, receiver) {
+      var base = _superPropBase(target, property);
 
-      if (! base) return;
-      var desc = Object.getOwnPropertyDescriptor (base, propiedad);
+      if (!base) return;
+      var desc = Object.getOwnPropertyDescriptor(base, property);
 
       if (desc.get) {
-        volver desc.get.call (receptor);
+        return desc.get.call(receiver);
       }
 
       return desc.value;
     };
   }
 
-  return _get (objetivo, propiedad, receptor || objetivo);
+  return _get(target, property, receiver || target);
 }
 
 var consolePrefix = 'SweetAlert2:';
-/ **
- * Filtra los valores únicos en una nueva matriz
+/**
+ * Filter the unique values into a new array
  * @param arr
- * /
+ */
 
-var uniqueArray = función uniqueArray (arr) {
-  resultado var = [];
+var uniqueArray = function uniqueArray(arr) {
+  var result = [];
 
-  para (var i = 0; i <longitud de arr; i ++) {
-    if (result.indexOf (arr [i]) === -1) {
-      result.push (arr [i]);
+  for (var i = 0; i < arr.length; i++) {
+    if (result.indexOf(arr[i]) === -1) {
+      result.push(arr[i]);
     }
   }
 
-  resultado de retorno;
+  return result;
 };
-/ **
- * Poner en mayúscula la primera letra de una cadena
+/**
+ * Capitalize the first letter of a string
  * @param str
- * /
+ */
 
-var capitalizeFirstLetter = función capitalizeFirstLetter (str) {
-  return str.charAt (0) .toUpperCase () + str.slice (1);
+var capitalizeFirstLetter = function capitalizeFirstLetter(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
 };
-/ **
- * Devuelve los valores del objeto ob de la matriz (Object.values ​​no es compatible con IE11)
+/**
+ * Returns the array ob object values (Object.values isn't supported in IE11)
  * @param obj
- * /
+ */
 
-var objectValues ​​= function objectValues ​​(obj) {
-  return Object.keys (obj) .map (function (key) {
-    return obj [clave];
+var objectValues = function objectValues(obj) {
+  return Object.keys(obj).map(function (key) {
+    return obj[key];
   });
 };
-/ **
- * Convertir NodeList a Array
+/**
+ * Convert NodeList to Array
  * @param nodeList
- * /
+ */
 
-var toArray = función toArray (nodeList) {
-  return Array.prototype.slice.call (lista de nodos);
+var toArray = function toArray(nodeList) {
+  return Array.prototype.slice.call(nodeList);
 };
-/ **
- * Estandarizar advertencias de consola
- * mensaje @param
- * /
+/**
+ * Standardise console warnings
+ * @param message
+ */
 
-var warn = function warn (mensaje) {
-  console.warn ("". concat (consolePrefix, "") .concat (mensaje));
+var warn = function warn(message) {
+  console.warn("".concat(consolePrefix, " ").concat(message));
 };
-/ **
- * Estandarizar errores de consola
- * mensaje @param
- * /
+/**
+ * Standardise console errors
+ * @param message
+ */
 
-error var = error de función (mensaje) {
-  console.error ("". concat (consolePrefix, "") .concat (mensaje));
+var error = function error(message) {
+  console.error("".concat(consolePrefix, " ").concat(message));
 };
-/ **
- * Estado global privado para `warnOnce`
+/**
+ * Private global state for `warnOnce`
  * @type {Array}
- * @privado
- * /
+ * @private
+ */
 
 var previousWarnOnceMessages = [];
-/ **
- * Mostrar una advertencia de consola, pero solo si aún no se ha mostrado
- * mensaje @param
- * /
+/**
+ * Show a console warning, but only if it hasn't already been shown
+ * @param message
+ */
 
-var warnOnce = function warnOnce (mensaje) {
-  if (! (previousWarnOnceMessages.indexOf (message)! == -1)) {
-    previousWarnOnceMessages.push (mensaje);
-    advertir (mensaje);
+var warnOnce = function warnOnce(message) {
+  if (!(previousWarnOnceMessages.indexOf(message) !== -1)) {
+    previousWarnOnceMessages.push(message);
+    warn(message);
   }
 };
-/ **
- * Mostrar una advertencia de consola única sobre parámetros / métodos obsoletos
- * /
+/**
+ * Show a one-time console warning about deprecated params/methods
+ */
 
-var warnAboutDepreation = función warnAboutDepreation (deprecatedParam, useInstead) {
-  warnOnce ("\" ". concat (deprecatedParam," \ "está en desuso y se eliminará en la próxima versión principal. Utilice \" "). concat (useInstead," \ "en su lugar."));
+var warnAboutDepreation = function warnAboutDepreation(deprecatedParam, useInstead) {
+  warnOnce("\"".concat(deprecatedParam, "\" is deprecated and will be removed in the next major release. Please use \"").concat(useInstead, "\" instead."));
 };
-/ **
- * Si `arg` es una función, llámela (sin argumentos ni contexto) y devuelva el resultado.
- * De lo contrario, simplemente pase el valor a través de
+/**
+ * If `arg` is a function, call it (with no arguments or context) and return the result.
+ * Otherwise, just pass the value through
  * @param arg
- * /
+ */
 
-var callIfFunction = función callIfFunction (arg) {
-  return typeof arg === 'función'? arg (): arg;
+var callIfFunction = function callIfFunction(arg) {
+  return typeof arg === 'function' ? arg() : arg;
 };
-var isPromise = función isPromise (arg) {
-  return arg && Promise.resolve (arg) === arg;
+var isPromise = function isPromise(arg) {
+  return arg && Promise.resolve(arg) === arg;
 };
 
-var DismissReason = Object.freeze ({
-  cancelar: 'cancelar',
-  telón de fondo: 'telón de fondo',
-  cerca cerca',
+var DismissReason = Object.freeze({
+  cancel: 'cancel',
+  backdrop: 'backdrop',
+  close: 'close',
   esc: 'esc',
-  temporizador: 'temporizador'
+  timer: 'timer'
 });
 
-var isJqueryElement = función isJqueryElement (elem) {
-  return _typeof (elem) === 'objeto' && elem.jquery;
+var isJqueryElement = function isJqueryElement(elem) {
+  return _typeof(elem) === 'object' && elem.jquery;
 };
 
-var isElement = function isElement (elem) {
-  return elem instanceof Element || isJqueryElement (elem);
+var isElement = function isElement(elem) {
+  return elem instanceof Element || isJqueryElement(elem);
 };
 
-var argsToParams = función argsToParams (args) {
+var argsToParams = function argsToParams(args) {
   var params = {};
 
-  if (_typeof (args [0]) === 'objeto' &&! isElement (args [0])) {
-    _extends (params, args [0]);
-  } más {
-    ['title', 'html', 'icon']. forEach (function (name, index) {
-      var arg = args [índice];
+  if (_typeof(args[0]) === 'object' && !isElement(args[0])) {
+    _extends(params, args[0]);
+  } else {
+    ['title', 'html', 'icon'].forEach(function (name, index) {
+      var arg = args[index];
 
-      if (typeof arg === 'string' || isElement (arg)) {
-        params [nombre] = arg;
-      } else if (arg! == undefined) {
-        error ("Tipo inesperado de" .concat (nombre, "! Se esperaba \" string \ "o \" Element \ ", got") .concat (_typeof (arg)));
+      if (typeof arg === 'string' || isElement(arg)) {
+        params[name] = arg;
+      } else if (arg !== undefined) {
+        error("Unexpected type of ".concat(name, "! Expected \"string\" or \"Element\", got ").concat(_typeof(arg)));
       }
     });
   }
 
-  parámetros de retorno;
+  return params;
 };
 
 var swalPrefix = 'swal2-';
-prefijo var = prefijo de función (elementos) {
-  resultado var = {};
+var prefix = function prefix(items) {
+  var result = {};
 
-  para (var i en elementos) {
-    resultado [items [i]] = swalPrefix + items [i];
+  for (var i in items) {
+    result[items[i]] = swalPrefix + items[i];
   }
 
-  resultado de retorno;
+  return result;
 };
-var swalClasses = prefix (['contenedor', 'se muestra', 'height-auto', 'iosfix', 'popup', 'modal', 'no-backdrop', 'toast', 'toast-shown', 'toast -column ',' show ',' hide ',' close ',' title ',' header ',' content ',' html-container ',' actions ',' confirm ',' cancel ',' footer ', 'icon', 'icon-content', 'image', 'input', 'file', 'range', 'select', 'radio', 'checkbox', 'label', 'textarea', 'inputerror', 'validation-message', 'progress-steps', 'active-progress-step', 'progress-step', 'progress-step-line', 'loading', 'styled', 'top', 'inicio superior ',' extremo superior ',' superior izquierda ',' superior derecha ',' centro ',' inicio central ',' centro-final ',' centro-izquierda ',' centro-derecha ' , 'bottom', 'bottom-start', 'bottom-end', 'bottom-left', 'bottom-right', 'grow-row', 'grow-column', 'grow-fullscreen', 'rtl' , 'timer-progress-bar', 'scrollbar-measure', 'icon-success', 'icon-warning', 'icon-info', 'icon-question', 'icon-error']);grow-row ',' grow-column ',' grow-fullscreen ',' rtl ',' timer-progress-bar ',' scrollbar-measure ',' icon-success ',' icon-warning ',' icon- info ',' icon-question ',' icon-error ']);grow-row ',' grow-column ',' grow-fullscreen ',' rtl ',' timer-progress-bar ',' scrollbar-measure ',' icon-success ',' icon-warning ',' icon- info ',' icon-question ',' icon-error ']);
-var iconTypes = prefijo (['éxito', 'advertencia', 'información', 'pregunta', 'error']);
+var swalClasses = prefix(['container', 'shown', 'height-auto', 'iosfix', 'popup', 'modal', 'no-backdrop', 'toast', 'toast-shown', 'toast-column', 'show', 'hide', 'close', 'title', 'header', 'content', 'html-container', 'actions', 'confirm', 'cancel', 'footer', 'icon', 'icon-content', 'image', 'input', 'file', 'range', 'select', 'radio', 'checkbox', 'label', 'textarea', 'inputerror', 'validation-message', 'progress-steps', 'active-progress-step', 'progress-step', 'progress-step-line', 'loading', 'styled', 'top', 'top-start', 'top-end', 'top-left', 'top-right', 'center', 'center-start', 'center-end', 'center-left', 'center-right', 'bottom', 'bottom-start', 'bottom-end', 'bottom-left', 'bottom-right', 'grow-row', 'grow-column', 'grow-fullscreen', 'rtl', 'timer-progress-bar', 'scrollbar-measure', 'icon-success', 'icon-warning', 'icon-info', 'icon-question', 'icon-error']);
+var iconTypes = prefix(['success', 'warning', 'info', 'question', 'error']);
 
-var getContainer = función getContainer () {
-  return document.body.querySelector (".". concat (swalClasses.container));
+var getContainer = function getContainer() {
+  return document.body.querySelector(".".concat(swalClasses.container));
 };
-var elementBySelector = función elementBySelector (selectorString) {
-  var contenedor = getContainer ();
-  devolver contenedor? container.querySelector (selectorString): nulo;
-};
-
-var elementByClass = función elementByClass (className) {
-  return elementBySelector (".". concat (className));
+var elementBySelector = function elementBySelector(selectorString) {
+  var container = getContainer();
+  return container ? container.querySelector(selectorString) : null;
 };
 
-var getPopup = función getPopup () {
-  return elementByClass (swalClasses.popup);
+var elementByClass = function elementByClass(className) {
+  return elementBySelector(".".concat(className));
 };
-var getIcons = función getIcons () {
-  popup var = getPopup ();
-  volver a la matriz (popup.querySelectorAll (".". concat (swalClasses.icon)));
+
+var getPopup = function getPopup() {
+  return elementByClass(swalClasses.popup);
 };
-var getIcon = función getIcon () {
-  var visibleIcon = getIcons (). filter (function (icon) {
-    return isVisible (icono);
+var getIcons = function getIcons() {
+  var popup = getPopup();
+  return toArray(popup.querySelectorAll(".".concat(swalClasses.icon)));
+};
+var getIcon = function getIcon() {
+  var visibleIcon = getIcons().filter(function (icon) {
+    return isVisible(icon);
   });
-  volver visibleIcon.length? visibleIcon [0]: nulo;
+  return visibleIcon.length ? visibleIcon[0] : null;
 };
-var getTitle = función getTitle () {
-  return elementByClass (swalClasses.title);
+var getTitle = function getTitle() {
+  return elementByClass(swalClasses.title);
 };
-var getContent = función getContent () {
-  return elementByClass (swalClasses.content);
+var getContent = function getContent() {
+  return elementByClass(swalClasses.content);
 };
-var getHtmlContainer = función getHtmlContainer () {
-  return elementByClass (swalClasses ['html-container']);
+var getHtmlContainer = function getHtmlContainer() {
+  return elementByClass(swalClasses['html-container']);
 };
-var getImage = función getImage () {
-  return elementByClass (swalClasses.image);
+var getImage = function getImage() {
+  return elementByClass(swalClasses.image);
 };
-var getProgressSteps = función getProgressSteps () {
-  return elementByClass (swalClasses ['progreso-pasos']);
+var getProgressSteps = function getProgressSteps() {
+  return elementByClass(swalClasses['progress-steps']);
 };
-var getValidationMessage = función getValidationMessage () {
-  return elementByClass (swalClasses ['mensaje de validación']);
+var getValidationMessage = function getValidationMessage() {
+  return elementByClass(swalClasses['validation-message']);
 };
-var getConfirmButton = función getConfirmButton () {
-  return elementBySelector (".". concat (swalClasses.actions, "."). concat (swalClasses.confirm));
+var getConfirmButton = function getConfirmButton() {
+  return elementBySelector(".".concat(swalClasses.actions, " .").concat(swalClasses.confirm));
 };
-var getCancelButton = función getCancelButton () {
-  return elementBySelector (".". concat (swalClasses.actions, "."). concat (swalClasses.cancel));
+var getCancelButton = function getCancelButton() {
+  return elementBySelector(".".concat(swalClasses.actions, " .").concat(swalClasses.cancel));
 };
-var getActions = función getActions () {
-  return elementByClass (swalClasses.actions);
+var getActions = function getActions() {
+  return elementByClass(swalClasses.actions);
 };
-var getHeader = función getHeader () {
-  return elementByClass (swalClasses.header);
+var getHeader = function getHeader() {
+  return elementByClass(swalClasses.header);
 };
-var getFooter = función getFooter () {
-  return elementByClass (swalClasses.footer);
+var getFooter = function getFooter() {
+  return elementByClass(swalClasses.footer);
 };
-var getTimerProgressBar = función getTimerProgressBar () {
-  return elementByClass (swalClasses ['timer-progress-bar']);
+var getTimerProgressBar = function getTimerProgressBar() {
+  return elementByClass(swalClasses['timer-progress-bar']);
 };
-var getCloseButton = función getCloseButton () {
-  return elementByClass (swalClasses.close);
+var getCloseButton = function getCloseButton() {
+  return elementByClass(swalClasses.close);
 }; // https://github.com/jkup/focusable/blob/master/index.js
 
-var focusable = "\ na [href], \ n area [href], \ n input: not ([disabled]), \ n select: not ([disabled]), \ n textarea: not ([disabled]), \ n botón: no ([deshabilitado]), \ n iframe, \ n objeto, \ n incrustar, \ n [tabindex = \ "0 \"], \ n [contenteditable], \ n audio [controles], \ n video [controles], \ n resumen \ n ";
-var getFocusableElements = función getFocusableElements () {
-  var focusableElementsWithTabindex = toArray (getPopup (). querySelectorAll ('[tabindex]: not ([tabindex = "- 1"]): not ([tabindex = "0"])')) // ordenar según tabindex
-  .sort (función (a, b) {
-    a = parseInt (a.getAttribute ('tabindex'));
-    b = parseInt (b.getAttribute ('tabindex'));
+var focusable = "\n  a[href],\n  area[href],\n  input:not([disabled]),\n  select:not([disabled]),\n  textarea:not([disabled]),\n  button:not([disabled]),\n  iframe,\n  object,\n  embed,\n  [tabindex=\"0\"],\n  [contenteditable],\n  audio[controls],\n  video[controls],\n  summary\n";
+var getFocusableElements = function getFocusableElements() {
+  var focusableElementsWithTabindex = toArray(getPopup().querySelectorAll('[tabindex]:not([tabindex="-1"]):not([tabindex="0"])')) // sort according to tabindex
+  .sort(function (a, b) {
+    a = parseInt(a.getAttribute('tabindex'));
+    b = parseInt(b.getAttribute('tabindex'));
 
-    si (a> b) {
-      retorno 1;
-    } más si (a <b) {
-      volver -1;
+    if (a > b) {
+      return 1;
+    } else if (a < b) {
+      return -1;
     }
 
-    devuelve 0;
+    return 0;
   });
-  var otherFocusableElements = toArray (getPopup (). querySelectorAll (focusable)). filter (function (el) {
-    return el.getAttribute ('tabindex')! == '-1';
+  var otherFocusableElements = toArray(getPopup().querySelectorAll(focusable)).filter(function (el) {
+    return el.getAttribute('tabindex') !== '-1';
   });
-  return uniqueArray (focusableElementsWithTabindex.concat (otherFocusableElements)). filter (function (el) {
-    return isVisible (el);
+  return uniqueArray(focusableElementsWithTabindex.concat(otherFocusableElements)).filter(function (el) {
+    return isVisible(el);
   });
 };
-var isModal = función isModal () {
-  return! isToast () &&! document.body.classList.contains (swalClasses ['no-backdrop']);
+var isModal = function isModal() {
+  return !isToast() && !document.body.classList.contains(swalClasses['no-backdrop']);
 };
-var isToast = función isToast () {
-  return document.body.classList.contains (swalClasses ['muestra de tostadas']);
+var isToast = function isToast() {
+  return document.body.classList.contains(swalClasses['toast-shown']);
 };
-var isLoading = function isLoading () {
-  return getPopup (). hasAttribute ('carga de datos');
+var isLoading = function isLoading() {
+  return getPopup().hasAttribute('data-loading');
 };
 
-estados var = {
-  previousBodyPadding: nulo
+var states = {
+  previousBodyPadding: null
 };
-var hasClass = function hasClass (elem, className) {
-  if (! className) {
-    falso retorno;
+var hasClass = function hasClass(elem, className) {
+  if (!className) {
+    return false;
   }
 
-  var classList = className.split (/ \ s + /);
+  var classList = className.split(/\s+/);
 
-  for (var i = 0; i <classList.length; i ++) {
-    if (! elem.classList.contains (classList [i])) {
-      falso retorno;
+  for (var i = 0; i < classList.length; i++) {
+    if (!elem.classList.contains(classList[i])) {
+      return false;
     }
   }
 
-  volver verdadero;
+  return true;
 };
 
-var removeCustomClasses = función removeCustomClasses (elem, params) {
-  toArray (elem.classList) .forEach (function (className) {
-    if (! (objectValues ​​(swalClasses) .indexOf (className)! == -1) &&! (objectValues ​​(iconTypes) .indexOf (className)! == -1) &&! (objectValues ​​(params.showClass) .indexOf (className )! == -1)) {
-      elem.classList.remove (className);
+var removeCustomClasses = function removeCustomClasses(elem, params) {
+  toArray(elem.classList).forEach(function (className) {
+    if (!(objectValues(swalClasses).indexOf(className) !== -1) && !(objectValues(iconTypes).indexOf(className) !== -1) && !(objectValues(params.showClass).indexOf(className) !== -1)) {
+      elem.classList.remove(className);
     }
   });
 };
 
-var applyCustomClass = función applyCustomClass (elem, params, className) {
-  removeCustomClasses (elem, params);
+var applyCustomClass = function applyCustomClass(elem, params, className) {
+  removeCustomClasses(elem, params);
 
-  if (params.customClass && params.customClass [className]) {
-    if (typeof params.customClass [className]! == 'string' &&! params.customClass [className] .forEach) {
-      return warn ("Tipo no válido de customClass.". concat (className, "! Cadena esperada u objeto iterable, consiguió \" "). concat (_typeof (params.customClass [className])," \ ""));
+  if (params.customClass && params.customClass[className]) {
+    if (typeof params.customClass[className] !== 'string' && !params.customClass[className].forEach) {
+      return warn("Invalid type of customClass.".concat(className, "! Expected string or iterable object, got \"").concat(_typeof(params.customClass[className]), "\""));
     }
 
-    addClass (elem, params.customClass [className]);
+    addClass(elem, params.customClass[className]);
   }
 };
-función getInput (content, inputType) {
-  if (! inputType) {
-    volver nulo;
+function getInput(content, inputType) {
+  if (!inputType) {
+    return null;
   }
 
   switch (inputType) {
-    caso 'select':
-    caso 'textarea':
-    expediente':
-      return getChildByClass (content, swalClasses [inputType]);
+    case 'select':
+    case 'textarea':
+    case 'file':
+      return getChildByClass(content, swalClasses[inputType]);
 
-    caso 'casilla de verificación':
-      return content.querySelector (".". concat (swalClasses.checkbox, "input"));
+    case 'checkbox':
+      return content.querySelector(".".concat(swalClasses.checkbox, " input"));
 
-    caso 'radio':
-      return content.querySelector (".". concat (swalClasses.radio, "entrada: verificado")) || content.querySelector (".". concat (swalClasses.radio, "input: first-child"));
+    case 'radio':
+      return content.querySelector(".".concat(swalClasses.radio, " input:checked")) || content.querySelector(".".concat(swalClasses.radio, " input:first-child"));
 
-    caso 'rango':
-      return content.querySelector (".". concat (swalClasses.range, "input"));
+    case 'range':
+      return content.querySelector(".".concat(swalClasses.range, " input"));
 
-    defecto:
-      return getChildByClass (content, swalClasses.input);
+    default:
+      return getChildByClass(content, swalClasses.input);
   }
 }
-var focusInput = función focusInput (input) {
-  input.focus (); // coloca el cursor al final del texto en la entrada de texto
+var focusInput = function focusInput(input) {
+  input.focus(); // place cursor at end of text in text input
 
-  if (input.type! == 'archivo') {
+  if (input.type !== 'file') {
     // http://stackoverflow.com/a/2345915
     var val = input.value;
     input.value = '';
     input.value = val;
   }
 };
-var toggleClass = función toggleClass (target, classList, condition) {
-  if (! target ||! classList) {
-    regreso;
+var toggleClass = function toggleClass(target, classList, condition) {
+  if (!target || !classList) {
+    return;
   }
 
   if (typeof classList === 'string') {
-    classList = classList.split (/ \ s + /). filter (Boolean);
+    classList = classList.split(/\s+/).filter(Boolean);
   }
 
-  classList.forEach (function (className) {
+  classList.forEach(function (className) {
     if (target.forEach) {
-      target.forEach (function (elem) {
-        condición? elem.classList.add (className): elem.classList.remove (className);
+      target.forEach(function (elem) {
+        condition ? elem.classList.add(className) : elem.classList.remove(className);
       });
-    } más {
-      condición? target.classList.add (className): target.classList.remove (className);
+    } else {
+      condition ? target.classList.add(className) : target.classList.remove(className);
     }
   });
 };
-var addClass = función addClass (target, classList) {
-  toggleClass (target, classList, true);
+var addClass = function addClass(target, classList) {
+  toggleClass(target, classList, true);
 };
-var removeClass = función removeClass (target, classList) {
-  toggleClass (target, classList, false);
+var removeClass = function removeClass(target, classList) {
+  toggleClass(target, classList, false);
 };
-var getChildByClass = función getChildByClass (elem, className) {
-  para (var i = 0; i <elem.childNodes.length; i ++) {
-    if (hasClass (elem.childNodes [i], className)) {
-      return elem.childNodes [i];
+var getChildByClass = function getChildByClass(elem, className) {
+  for (var i = 0; i < elem.childNodes.length; i++) {
+    if (hasClass(elem.childNodes[i], className)) {
+      return elem.childNodes[i];
     }
   }
 };
-var applyNumericalStyle = función applyNumericalStyle (elem, propiedad, valor) {
+var applyNumericalStyle = function applyNumericalStyle(elem, property, value) {
   if (value || parseInt(value) === 0) {
     elem.style[property] = typeof value === 'number' ? "".concat(value, "px") : value;
   } else {
@@ -3035,3 +3035,5 @@ return Swal;
 
 })));
 if (typeof this !== 'undefined' && this.Sweetalert2){  this.swal = this.sweetAlert = this.Swal = this.SweetAlert = this.Sweetalert2}
+
+"undefined"!=typeof document&&function(e,t){var n=e.createElement("style");if(e.getElementsByTagName("head")[0].appendChild(n),n.styleSheet)n.styleSheet.disabled||(n.styleSheet.cssText=t);else try{n.innerHTML=t}catch(e){n.innerText=t}}(document,".swal2-popup.swal2-toast{-webkit-box-orient:horizontal;-webkit-box-direction:normal;flex-direction:row;-webkit-box-align:center;align-items:center;width:auto;padding:.625em;overflow-y:hidden;background:#fff;box-shadow:0 0 .625em #d9d9d9}.swal2-popup.swal2-toast .swal2-header{-webkit-box-orient:horizontal;-webkit-box-direction:normal;flex-direction:row}.swal2-popup.swal2-toast .swal2-title{-webkit-box-flex:1;flex-grow:1;-webkit-box-pack:start;justify-content:flex-start;margin:0 .6em;font-size:1em}.swal2-popup.swal2-toast .swal2-footer{margin:.5em 0 0;padding:.5em 0 0;font-size:.8em}.swal2-popup.swal2-toast .swal2-close{position:static;width:.8em;height:.8em;line-height:.8}.swal2-popup.swal2-toast .swal2-content{-webkit-box-pack:start;justify-content:flex-start;font-size:1em}.swal2-popup.swal2-toast .swal2-icon{width:2em;min-width:2em;height:2em;margin:0}.swal2-popup.swal2-toast .swal2-icon .swal2-icon-content{display:-webkit-box;display:flex;-webkit-box-align:center;align-items:center;font-size:1.8em;font-weight:700}@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){.swal2-popup.swal2-toast .swal2-icon .swal2-icon-content{font-size:.25em}}.swal2-popup.swal2-toast .swal2-icon.swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line]{top:.875em;width:1.375em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:.3125em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:.3125em}.swal2-popup.swal2-toast .swal2-actions{flex-basis:auto!important;width:auto;height:auto;margin:0 .3125em}.swal2-popup.swal2-toast .swal2-styled{margin:0 .3125em;padding:.3125em .625em;font-size:1em}.swal2-popup.swal2-toast .swal2-styled:focus{box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(50,100,150,.4)}.swal2-popup.swal2-toast .swal2-success{border-color:#a5dc86}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line]{position:absolute;width:1.6em;height:3em;-webkit-transform:rotate(45deg);transform:rotate(45deg);border-radius:50%}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=left]{top:-.8em;left:-.5em;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:2em 2em;transform-origin:2em 2em;border-radius:4em 0 0 4em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=right]{top:-.25em;left:.9375em;-webkit-transform-origin:0 1.5em;transform-origin:0 1.5em;border-radius:0 4em 4em 0}.swal2-popup.swal2-toast .swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-success .swal2-success-fix{top:0;left:.4375em;width:.4375em;height:2.6875em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line]{height:.3125em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=tip]{top:1.125em;left:.1875em;width:.75em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=long]{top:.9375em;right:.1875em;width:1.375em}.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-tip{-webkit-animation:swal2-toast-animate-success-line-tip .75s;animation:swal2-toast-animate-success-line-tip .75s}.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-long{-webkit-animation:swal2-toast-animate-success-line-long .75s;animation:swal2-toast-animate-success-line-long .75s}.swal2-popup.swal2-toast.swal2-show{-webkit-animation:swal2-toast-show .5s;animation:swal2-toast-show .5s}.swal2-popup.swal2-toast.swal2-hide{-webkit-animation:swal2-toast-hide .1s forwards;animation:swal2-toast-hide .1s forwards}.swal2-container{display:-webkit-box;display:flex;position:fixed;z-index:1060;top:0;right:0;bottom:0;left:0;-webkit-box-orient:horizontal;-webkit-box-direction:normal;flex-direction:row;-webkit-box-align:center;align-items:center;-webkit-box-pack:center;justify-content:center;padding:.625em;overflow-x:hidden;-webkit-transition:background-color .1s;transition:background-color .1s;-webkit-overflow-scrolling:touch}.swal2-container.swal2-backdrop-show{background:rgba(0,0,0,.4)}.swal2-container.swal2-backdrop-hide{background:0 0!important}.swal2-container.swal2-top{-webkit-box-align:start;align-items:flex-start}.swal2-container.swal2-top-left,.swal2-container.swal2-top-start{-webkit-box-align:start;align-items:flex-start;-webkit-box-pack:start;justify-content:flex-start}.swal2-container.swal2-top-end,.swal2-container.swal2-top-right{-webkit-box-align:start;align-items:flex-start;-webkit-box-pack:end;justify-content:flex-end}.swal2-container.swal2-center{-webkit-box-align:center;align-items:center}.swal2-container.swal2-center-left,.swal2-container.swal2-center-start{-webkit-box-align:center;align-items:center;-webkit-box-pack:start;justify-content:flex-start}.swal2-container.swal2-center-end,.swal2-container.swal2-center-right{-webkit-box-align:center;align-items:center;-webkit-box-pack:end;justify-content:flex-end}.swal2-container.swal2-bottom{-webkit-box-align:end;align-items:flex-end}.swal2-container.swal2-bottom-left,.swal2-container.swal2-bottom-start{-webkit-box-align:end;align-items:flex-end;-webkit-box-pack:start;justify-content:flex-start}.swal2-container.swal2-bottom-end,.swal2-container.swal2-bottom-right{-webkit-box-align:end;align-items:flex-end;-webkit-box-pack:end;justify-content:flex-end}.swal2-container.swal2-bottom-end>:first-child,.swal2-container.swal2-bottom-left>:first-child,.swal2-container.swal2-bottom-right>:first-child,.swal2-container.swal2-bottom-start>:first-child,.swal2-container.swal2-bottom>:first-child{margin-top:auto}.swal2-container.swal2-grow-fullscreen>.swal2-modal{display:-webkit-box!important;display:flex!important;-webkit-box-flex:1;flex:1;align-self:stretch;-webkit-box-pack:center;justify-content:center}.swal2-container.swal2-grow-row>.swal2-modal{display:-webkit-box!important;display:flex!important;-webkit-box-flex:1;flex:1;align-content:center;-webkit-box-pack:center;justify-content:center}.swal2-container.swal2-grow-column{-webkit-box-flex:1;flex:1;-webkit-box-orient:vertical;-webkit-box-direction:normal;flex-direction:column}.swal2-container.swal2-grow-column.swal2-bottom,.swal2-container.swal2-grow-column.swal2-center,.swal2-container.swal2-grow-column.swal2-top{-webkit-box-align:center;align-items:center}.swal2-container.swal2-grow-column.swal2-bottom-left,.swal2-container.swal2-grow-column.swal2-bottom-start,.swal2-container.swal2-grow-column.swal2-center-left,.swal2-container.swal2-grow-column.swal2-center-start,.swal2-container.swal2-grow-column.swal2-top-left,.swal2-container.swal2-grow-column.swal2-top-start{-webkit-box-align:start;align-items:flex-start}.swal2-container.swal2-grow-column.swal2-bottom-end,.swal2-container.swal2-grow-column.swal2-bottom-right,.swal2-container.swal2-grow-column.swal2-center-end,.swal2-container.swal2-grow-column.swal2-center-right,.swal2-container.swal2-grow-column.swal2-top-end,.swal2-container.swal2-grow-column.swal2-top-right{-webkit-box-align:end;align-items:flex-end}.swal2-container.swal2-grow-column>.swal2-modal{display:-webkit-box!important;display:flex!important;-webkit-box-flex:1;flex:1;align-content:center;-webkit-box-pack:center;justify-content:center}.swal2-container:not(.swal2-top):not(.swal2-top-start):not(.swal2-top-end):not(.swal2-top-left):not(.swal2-top-right):not(.swal2-center-start):not(.swal2-center-end):not(.swal2-center-left):not(.swal2-center-right):not(.swal2-bottom):not(.swal2-bottom-start):not(.swal2-bottom-end):not(.swal2-bottom-left):not(.swal2-bottom-right):not(.swal2-grow-fullscreen)>.swal2-modal{margin:auto}@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){.swal2-container .swal2-modal{margin:0!important}}.swal2-popup{display:none;position:relative;box-sizing:border-box;-webkit-box-orient:vertical;-webkit-box-direction:normal;flex-direction:column;-webkit-box-pack:center;justify-content:center;width:32em;max-width:100%;padding:1.25em;border:none;border-radius:.3125em;background:#fff;font-family:inherit;font-size:1rem}.swal2-popup:focus{outline:0}.swal2-popup.swal2-loading{overflow-y:hidden}.swal2-header{display:-webkit-box;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;flex-direction:column;-webkit-box-align:center;align-items:center}.swal2-title{position:relative;max-width:100%;margin:0 0 .4em;padding:0;color:#595959;font-size:1.875em;font-weight:600;text-align:center;text-transform:none;word-wrap:break-word}.swal2-actions{display:-webkit-box;display:flex;z-index:1;flex-wrap:wrap;-webkit-box-align:center;align-items:center;-webkit-box-pack:center;justify-content:center;width:100%;margin:1.25em auto 0}.swal2-actions:not(.swal2-loading) .swal2-styled[disabled]{opacity:.4}.swal2-actions:not(.swal2-loading) .swal2-styled:hover{background-image:-webkit-gradient(linear,left top,left bottom,from(rgba(0,0,0,.1)),to(rgba(0,0,0,.1)));background-image:linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1))}.swal2-actions:not(.swal2-loading) .swal2-styled:active{background-image:-webkit-gradient(linear,left top,left bottom,from(rgba(0,0,0,.2)),to(rgba(0,0,0,.2)));background-image:linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.2))}.swal2-actions.swal2-loading .swal2-styled.swal2-confirm{box-sizing:border-box;width:2.5em;height:2.5em;margin:.46875em;padding:0;-webkit-animation:swal2-rotate-loading 1.5s linear 0s infinite normal;animation:swal2-rotate-loading 1.5s linear 0s infinite normal;border:.25em solid transparent;border-radius:100%;border-color:transparent;background-color:transparent!important;color:transparent;cursor:default;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.swal2-actions.swal2-loading .swal2-styled.swal2-cancel{margin-right:30px;margin-left:30px}.swal2-actions.swal2-loading :not(.swal2-styled).swal2-confirm::after{content:\"\";display:inline-block;width:15px;height:15px;margin-left:5px;-webkit-animation:swal2-rotate-loading 1.5s linear 0s infinite normal;animation:swal2-rotate-loading 1.5s linear 0s infinite normal;border:3px solid #999;border-radius:50%;border-right-color:transparent;box-shadow:1px 1px 1px #fff}.swal2-styled{margin:.3125em;padding:.625em 2em;box-shadow:none;font-weight:500}.swal2-styled:not([disabled]){cursor:pointer}.swal2-styled.swal2-confirm{border:0;border-radius:.25em;background:initial;background-color:#3085d6;color:#fff;font-size:1.0625em}.swal2-styled.swal2-cancel{border:0;border-radius:.25em;background:initial;background-color:#aaa;color:#fff;font-size:1.0625em}.swal2-styled:focus{outline:0;box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(50,100,150,.4)}.swal2-styled::-moz-focus-inner{border:0}.swal2-footer{-webkit-box-pack:center;justify-content:center;margin:1.25em 0 0;padding:1em 0 0;border-top:1px solid #eee;color:#545454;font-size:1em}.swal2-timer-progress-bar{position:absolute;bottom:0;left:0;width:100%;height:.25em;background:rgba(0,0,0,.2)}.swal2-image{max-width:100%;margin:1.25em auto}.swal2-close{position:absolute;z-index:2;top:0;right:0;-webkit-box-pack:center;justify-content:center;width:1.2em;height:1.2em;padding:0;overflow:hidden;-webkit-transition:color .1s ease-out;transition:color .1s ease-out;border:none;border-radius:0;outline:initial;background:0 0;color:#ccc;font-family:serif;font-size:2.5em;line-height:1.2;cursor:pointer}.swal2-close:hover{-webkit-transform:none;transform:none;background:0 0;color:#f27474}.swal2-close::-moz-focus-inner{border:0}.swal2-content{z-index:1;-webkit-box-pack:center;justify-content:center;margin:0;padding:0;color:#545454;font-size:1.125em;font-weight:400;line-height:normal;text-align:center;word-wrap:break-word}.swal2-checkbox,.swal2-file,.swal2-input,.swal2-radio,.swal2-select,.swal2-textarea{margin:1em auto}.swal2-file,.swal2-input,.swal2-textarea{box-sizing:border-box;width:100%;-webkit-transition:border-color .3s,box-shadow .3s;transition:border-color .3s,box-shadow .3s;border:1px solid #d9d9d9;border-radius:.1875em;background:inherit;box-shadow:inset 0 1px 1px rgba(0,0,0,.06);color:inherit;font-size:1.125em}.swal2-file.swal2-inputerror,.swal2-input.swal2-inputerror,.swal2-textarea.swal2-inputerror{border-color:#f27474!important;box-shadow:0 0 2px #f27474!important}.swal2-file:focus,.swal2-input:focus,.swal2-textarea:focus{border:1px solid #b4dbed;outline:0;box-shadow:0 0 3px #c4e6f5}.swal2-file::-webkit-input-placeholder,.swal2-input::-webkit-input-placeholder,.swal2-textarea::-webkit-input-placeholder{color:#ccc}.swal2-file::-moz-placeholder,.swal2-input::-moz-placeholder,.swal2-textarea::-moz-placeholder{color:#ccc}.swal2-file:-ms-input-placeholder,.swal2-input:-ms-input-placeholder,.swal2-textarea:-ms-input-placeholder{color:#ccc}.swal2-file::-ms-input-placeholder,.swal2-input::-ms-input-placeholder,.swal2-textarea::-ms-input-placeholder{color:#ccc}.swal2-file::placeholder,.swal2-input::placeholder,.swal2-textarea::placeholder{color:#ccc}.swal2-range{margin:1em auto;background:#fff}.swal2-range input{width:80%}.swal2-range output{width:20%;color:inherit;font-weight:600;text-align:center}.swal2-range input,.swal2-range output{height:2.625em;padding:0;font-size:1.125em;line-height:2.625em}.swal2-input{height:2.625em;padding:0 .75em}.swal2-input[type=number]{max-width:10em}.swal2-file{background:inherit;font-size:1.125em}.swal2-textarea{height:6.75em;padding:.75em}.swal2-select{min-width:50%;max-width:100%;padding:.375em .625em;background:inherit;color:inherit;font-size:1.125em}.swal2-checkbox,.swal2-radio{-webkit-box-align:center;align-items:center;-webkit-box-pack:center;justify-content:center;background:#fff;color:inherit}.swal2-checkbox label,.swal2-radio label{margin:0 .6em;font-size:1.125em}.swal2-checkbox input,.swal2-radio input{margin:0 .4em}.swal2-validation-message{display:none;-webkit-box-align:center;align-items:center;-webkit-box-pack:center;justify-content:center;padding:.625em;overflow:hidden;background:#f0f0f0;color:#666;font-size:1em;font-weight:300}.swal2-validation-message::before{content:\"!\";display:inline-block;width:1.5em;min-width:1.5em;height:1.5em;margin:0 .625em;border-radius:50%;background-color:#f27474;color:#fff;font-weight:600;line-height:1.5em;text-align:center}.swal2-icon{position:relative;box-sizing:content-box;-webkit-box-pack:center;justify-content:center;width:5em;height:5em;margin:1.25em auto 1.875em;border:.25em solid transparent;border-radius:50%;font-family:inherit;line-height:5em;cursor:default;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.swal2-icon .swal2-icon-content{display:-webkit-box;display:flex;-webkit-box-align:center;align-items:center;font-size:3.75em}.swal2-icon.swal2-error{border-color:#f27474;color:#f27474}.swal2-icon.swal2-error .swal2-x-mark{position:relative;-webkit-box-flex:1;flex-grow:1}.swal2-icon.swal2-error [class^=swal2-x-mark-line]{display:block;position:absolute;top:2.3125em;width:2.9375em;height:.3125em;border-radius:.125em;background-color:#f27474}.swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:1.0625em;-webkit-transform:rotate(45deg);transform:rotate(45deg)}.swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:1em;-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}.swal2-icon.swal2-error.swal2-icon-show{-webkit-animation:swal2-animate-error-icon .5s;animation:swal2-animate-error-icon .5s}.swal2-icon.swal2-error.swal2-icon-show .swal2-x-mark{-webkit-animation:swal2-animate-error-x-mark .5s;animation:swal2-animate-error-x-mark .5s}.swal2-icon.swal2-warning{border-color:#facea8;color:#f8bb86}.swal2-icon.swal2-info{border-color:#9de0f6;color:#3fc3ee}.swal2-icon.swal2-question{border-color:#c9dae1;color:#87adbd}.swal2-icon.swal2-success{border-color:#a5dc86;color:#a5dc86}.swal2-icon.swal2-success [class^=swal2-success-circular-line]{position:absolute;width:3.75em;height:7.5em;-webkit-transform:rotate(45deg);transform:rotate(45deg);border-radius:50%}.swal2-icon.swal2-success [class^=swal2-success-circular-line][class$=left]{top:-.4375em;left:-2.0635em;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:3.75em 3.75em;transform-origin:3.75em 3.75em;border-radius:7.5em 0 0 7.5em}.swal2-icon.swal2-success [class^=swal2-success-circular-line][class$=right]{top:-.6875em;left:1.875em;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:0 3.75em;transform-origin:0 3.75em;border-radius:0 7.5em 7.5em 0}.swal2-icon.swal2-success .swal2-success-ring{position:absolute;z-index:2;top:-.25em;left:-.25em;box-sizing:content-box;width:100%;height:100%;border:.25em solid rgba(165,220,134,.3);border-radius:50%}.swal2-icon.swal2-success .swal2-success-fix{position:absolute;z-index:1;top:.5em;left:1.625em;width:.4375em;height:5.625em;-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}.swal2-icon.swal2-success [class^=swal2-success-line]{display:block;position:absolute;z-index:2;height:.3125em;border-radius:.125em;background-color:#a5dc86}.swal2-icon.swal2-success [class^=swal2-success-line][class$=tip]{top:2.875em;left:.8125em;width:1.5625em;-webkit-transform:rotate(45deg);transform:rotate(45deg)}.swal2-icon.swal2-success [class^=swal2-success-line][class$=long]{top:2.375em;right:.5em;width:2.9375em;-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}.swal2-icon.swal2-success.swal2-icon-show .swal2-success-line-tip{-webkit-animation:swal2-animate-success-line-tip .75s;animation:swal2-animate-success-line-tip .75s}.swal2-icon.swal2-success.swal2-icon-show .swal2-success-line-long{-webkit-animation:swal2-animate-success-line-long .75s;animation:swal2-animate-success-line-long .75s}.swal2-icon.swal2-success.swal2-icon-show .swal2-success-circular-line-right{-webkit-animation:swal2-rotate-success-circular-line 4.25s ease-in;animation:swal2-rotate-success-circular-line 4.25s ease-in}.swal2-progress-steps{-webkit-box-align:center;align-items:center;margin:0 0 1.25em;padding:0;background:inherit;font-weight:600}.swal2-progress-steps li{display:inline-block;position:relative}.swal2-progress-steps .swal2-progress-step{z-index:20;width:2em;height:2em;border-radius:2em;background:#3085d6;color:#fff;line-height:2em;text-align:center}.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step{background:#3085d6}.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step{background:#add8e6;color:#fff}.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step-line{background:#add8e6}.swal2-progress-steps .swal2-progress-step-line{z-index:10;width:2.5em;height:.4em;margin:0 -1px;background:#3085d6}[class^=swal2]{-webkit-tap-highlight-color:transparent}.swal2-show{-webkit-animation:swal2-show .3s;animation:swal2-show .3s}.swal2-hide{-webkit-animation:swal2-hide .15s forwards;animation:swal2-hide .15s forwards}.swal2-noanimation{-webkit-transition:none;transition:none}.swal2-scrollbar-measure{position:absolute;top:-9999px;width:50px;height:50px;overflow:scroll}.swal2-rtl .swal2-close{right:auto;left:0}.swal2-rtl .swal2-timer-progress-bar{right:0;left:auto}@supports (-ms-accelerator:true){.swal2-range input{width:100%!important}.swal2-range output{display:none}}@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){.swal2-range input{width:100%!important}.swal2-range output{display:none}}@-moz-document url-prefix(){.swal2-close:focus{outline:2px solid rgba(50,100,150,.4)}}@-webkit-keyframes swal2-toast-show{0%{-webkit-transform:translateY(-.625em) rotateZ(2deg);transform:translateY(-.625em) rotateZ(2deg)}33%{-webkit-transform:translateY(0) rotateZ(-2deg);transform:translateY(0) rotateZ(-2deg)}66%{-webkit-transform:translateY(.3125em) rotateZ(2deg);transform:translateY(.3125em) rotateZ(2deg)}100%{-webkit-transform:translateY(0) rotateZ(0);transform:translateY(0) rotateZ(0)}}@keyframes swal2-toast-show{0%{-webkit-transform:translateY(-.625em) rotateZ(2deg);transform:translateY(-.625em) rotateZ(2deg)}33%{-webkit-transform:translateY(0) rotateZ(-2deg);transform:translateY(0) rotateZ(-2deg)}66%{-webkit-transform:translateY(.3125em) rotateZ(2deg);transform:translateY(.3125em) rotateZ(2deg)}100%{-webkit-transform:translateY(0) rotateZ(0);transform:translateY(0) rotateZ(0)}}@-webkit-keyframes swal2-toast-hide{100%{-webkit-transform:rotateZ(1deg);transform:rotateZ(1deg);opacity:0}}@keyframes swal2-toast-hide{100%{-webkit-transform:rotateZ(1deg);transform:rotateZ(1deg);opacity:0}}@-webkit-keyframes swal2-toast-animate-success-line-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@keyframes swal2-toast-animate-success-line-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@-webkit-keyframes swal2-toast-animate-success-line-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}@keyframes swal2-toast-animate-success-line-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}@-webkit-keyframes swal2-show{0%{-webkit-transform:scale(.7);transform:scale(.7)}45%{-webkit-transform:scale(1.05);transform:scale(1.05)}80%{-webkit-transform:scale(.95);transform:scale(.95)}100%{-webkit-transform:scale(1);transform:scale(1)}}@keyframes swal2-show{0%{-webkit-transform:scale(.7);transform:scale(.7)}45%{-webkit-transform:scale(1.05);transform:scale(1.05)}80%{-webkit-transform:scale(.95);transform:scale(.95)}100%{-webkit-transform:scale(1);transform:scale(1)}}@-webkit-keyframes swal2-hide{0%{-webkit-transform:scale(1);transform:scale(1);opacity:1}100%{-webkit-transform:scale(.5);transform:scale(.5);opacity:0}}@keyframes swal2-hide{0%{-webkit-transform:scale(1);transform:scale(1);opacity:1}100%{-webkit-transform:scale(.5);transform:scale(.5);opacity:0}}@-webkit-keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.8125em;width:1.5625em}}@keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.8125em;width:1.5625em}}@-webkit-keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@-webkit-keyframes swal2-rotate-success-circular-line{0%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}5%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}12%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}100%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}}@keyframes swal2-rotate-success-circular-line{0%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}5%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}12%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}100%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}}@-webkit-keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;-webkit-transform:scale(.4);transform:scale(.4);opacity:0}50%{margin-top:1.625em;-webkit-transform:scale(.4);transform:scale(.4);opacity:0}80%{margin-top:-.375em;-webkit-transform:scale(1.15);transform:scale(1.15)}100%{margin-top:0;-webkit-transform:scale(1);transform:scale(1);opacity:1}}@keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;-webkit-transform:scale(.4);transform:scale(.4);opacity:0}50%{margin-top:1.625em;-webkit-transform:scale(.4);transform:scale(.4);opacity:0}80%{margin-top:-.375em;-webkit-transform:scale(1.15);transform:scale(1.15)}100%{margin-top:0;-webkit-transform:scale(1);transform:scale(1);opacity:1}}@-webkit-keyframes swal2-animate-error-icon{0%{-webkit-transform:rotateX(100deg);transform:rotateX(100deg);opacity:0}100%{-webkit-transform:rotateX(0);transform:rotateX(0);opacity:1}}@keyframes swal2-animate-error-icon{0%{-webkit-transform:rotateX(100deg);transform:rotateX(100deg);opacity:0}100%{-webkit-transform:rotateX(0);transform:rotateX(0);opacity:1}}@-webkit-keyframes swal2-rotate-loading{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes swal2-rotate-loading{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow:hidden}body.swal2-height-auto{height:auto!important}body.swal2-no-backdrop .swal2-container{top:auto;right:auto;bottom:auto;left:auto;max-width:calc(100% - .625em * 2);background-color:transparent!important}body.swal2-no-backdrop .swal2-container>.swal2-modal{box-shadow:0 0 10px rgba(0,0,0,.4)}body.swal2-no-backdrop .swal2-container.swal2-top{top:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}body.swal2-no-backdrop .swal2-container.swal2-top-left,body.swal2-no-backdrop .swal2-container.swal2-top-start{top:0;left:0}body.swal2-no-backdrop .swal2-container.swal2-top-end,body.swal2-no-backdrop .swal2-container.swal2-top-right{top:0;right:0}body.swal2-no-backdrop .swal2-container.swal2-center{top:50%;left:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}body.swal2-no-backdrop .swal2-container.swal2-center-left,body.swal2-no-backdrop .swal2-container.swal2-center-start{top:50%;left:0;-webkit-transform:translateY(-50%);transform:translateY(-50%)}body.swal2-no-backdrop .swal2-container.swal2-center-end,body.swal2-no-backdrop .swal2-container.swal2-center-right{top:50%;right:0;-webkit-transform:translateY(-50%);transform:translateY(-50%)}body.swal2-no-backdrop .swal2-container.swal2-bottom{bottom:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}body.swal2-no-backdrop .swal2-container.swal2-bottom-left,body.swal2-no-backdrop .swal2-container.swal2-bottom-start{bottom:0;left:0}body.swal2-no-backdrop .swal2-container.swal2-bottom-end,body.swal2-no-backdrop .swal2-container.swal2-bottom-right{right:0;bottom:0}@media print{body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow-y:scroll!important}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown)>[aria-hidden=true]{display:none}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) .swal2-container{position:static!important}}body.swal2-toast-shown .swal2-container{background-color:transparent}body.swal2-toast-shown .swal2-container.swal2-top{top:0;right:auto;bottom:auto;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-top-end,body.swal2-toast-shown .swal2-container.swal2-top-right{top:0;right:0;bottom:auto;left:auto}body.swal2-toast-shown .swal2-container.swal2-top-left,body.swal2-toast-shown .swal2-container.swal2-top-start{top:0;right:auto;bottom:auto;left:0}body.swal2-toast-shown .swal2-container.swal2-center-left,body.swal2-toast-shown .swal2-container.swal2-center-start{top:50%;right:auto;bottom:auto;left:0;-webkit-transform:translateY(-50%);transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-center{top:50%;right:auto;bottom:auto;left:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}body.swal2-toast-shown .swal2-container.swal2-center-end,body.swal2-toast-shown .swal2-container.swal2-center-right{top:50%;right:0;bottom:auto;left:auto;-webkit-transform:translateY(-50%);transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-left,body.swal2-toast-shown .swal2-container.swal2-bottom-start{top:auto;right:auto;bottom:0;left:0}body.swal2-toast-shown .swal2-container.swal2-bottom{top:auto;right:auto;bottom:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-end,body.swal2-toast-shown .swal2-container.swal2-bottom-right{top:auto;right:0;bottom:0;left:auto}body.swal2-toast-column .swal2-toast{-webkit-box-orient:vertical;-webkit-box-direction:normal;flex-direction:column;-webkit-box-align:stretch;align-items:stretch}body.swal2-toast-column .swal2-toast .swal2-actions{-webkit-box-flex:1;flex:1;align-self:stretch;height:2.2em;margin-top:.3125em}body.swal2-toast-column .swal2-toast .swal2-loading{-webkit-box-pack:center;justify-content:center}body.swal2-toast-column .swal2-toast .swal2-input{height:2em;margin:.3125em auto;font-size:1em}body.swal2-toast-column .swal2-toast .swal2-validation-message{font-size:1em}");
